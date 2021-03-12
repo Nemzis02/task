@@ -1,10 +1,11 @@
 import React from 'react';
-import { Content,
+import {
+  Content,
   Heading,
   StyledList,
   Task
 } from '@components/styled-components/Task';
-import UserList from '@components/taskone/UserList'
+import UserList from '@components/taskone/UserList';
 
 const TaskOne = () => (
   <Task>
@@ -17,7 +18,10 @@ const TaskOne = () => (
         Component that is preventing the behaviour described below from working correctly.
         Fix the bugs and feel free to make improvements.
       </p>
-      <p>Include unit tests. React Testing Library is already configured for you in the skeleton project.</p>
+      <p>
+        Include unit tests. React Testing Library is
+        already configured for you in the skeleton project.
+      </p>
       Expected:
       <StyledList type="1">
         <li>
