@@ -1,79 +1,105 @@
-import React from 'react';
-import {
-  Content,
-  DesignList,
-  Heading,
-  StyledList,
-  Task
-} from '@components/styled-components/Task';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Content, Heading, Task } from '@components/styled-components/Task';
+import LoadingModal from './LoadingModal';
+import DeleteModal from './DeleteModal';
+import DeleteReportModal from './DeleteReportModal';
 
-const modals = [
+const mockReports = [
   {
-    title: 'Data loading modal: ',
-    alt: 'Data loading modal',
-    src: 'images/data_loading.png'
+    id: 1,
+    name: 'January 2020',
   },
   {
-    title: 'Delete files modal: ',
-    alt: 'Delete files modal',
-    src: 'images/delete_files.png'
+    id: 2,
+    name: 'February 2020',
   },
   {
-    title: 'Delete report and history modal: ',
-    alt: 'Delete report and history modal',
-    src: 'images/delete_report_and_history.png'
+    id: 3,
+    name: 'March 2020',
+  },
+  {
+    id: 4,
+    name: 'April 2020',
+  },
+  {
+    id: 5,
+    name: 'May 2020',
+  },
+  {
+    id: 6,
+    name: 'June 2020',
+  },
+  {
+    id: 7,
+    name: 'July 2020',
   },
 ];
 
-const TaskTwo = () => (
-  <Task>
-    <Heading>Task Two</Heading>
-    <Content>
-      <h4>Complete the following task:</h4>
-      <p>
-        This is to assess your ability to design and build React components.
-        Assume that you are part of a team starting a new project,
-        a consistent design language has been set by the Design Team,
-        i.e. fonts, labels, button and input styles etc. Below are
-        designs for some components for you to build. With unit tests
-        and without 3rd party modal packages, build the modals shown in
-        these designs and have re-usability in mind as what you build
-        might be re-usable in other parts of the application.
-      </p>
-      <p>
-        {`Include unit tests. React Testing Library is already 
-          configured for you in the skeleton project.`}
-      </p>
-      Expected:
-      <StyledList type="1">
-        <li>
-          <strong>No </strong>
-          backdrop/page overlay is required for this exercise.
-        </li>
-        <li>All modals should expose a mechanism to allow them to be closed.</li>
-        <li>There should be a way to consume button click events on modals with buttons.</li>
-        <li>Create a demo page with three buttons that trigger each of the modals to show.</li>
-      </StyledList>
-      <DesignList>
-        {modals.map(({ title, alt, src }, index) => (
-          <div key={index.toString()}>
-            <label htmlFor={`img-${index}`}>
-              {title}
-            </label>
-            <img
-              alt={alt}
-              src={src}
-              id={`img-${index}`}
-            />
-          </div>
-        ))}
-      </DesignList>
-      <hr />
-      <strong>
-        Feel free to use this component as a demo page for your work.
-      </strong>
-    </Content>
-  </Task>
-);
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const TaskTwo = () => {
+  const [isLoadingModalOpen, setIsLoadingModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleteReportModalOpen, setIsDeleteReportModalOpen] = useState(false);
+
+  const toggleLoadingModal = () => {
+    setIsLoadingModalOpen((isOpen) => !isOpen);
+  };
+
+  const toggleDeleteModal = () => {
+    setIsDeleteModalOpen((isOpen) => !isOpen);
+  };
+
+  const toggleDeleteReportModal = () => {
+    setIsDeleteReportModalOpen((isOpen) => !isOpen);
+  };
+
+  const onDelete = () => {
+    toggleDeleteModal();
+  };
+
+  const onDeleteReport = () => {
+    toggleDeleteReportModal();
+  };
+
+  return (
+    <Task>
+      <Heading>Task Two</Heading>
+      <Content>
+        <ButtonContainer>
+          <button type="button" onClick={toggleLoadingModal}>
+            Open loading modal
+          </button>
+          <button type="button" onClick={toggleDeleteModal}>
+            Open delete modal
+          </button>
+          <button type="button" onClick={toggleDeleteReportModal}>
+            Open delete report modal
+          </button>
+        </ButtonContainer>
+        <LoadingModal
+          onClose={toggleLoadingModal}
+          isOpen={isLoadingModalOpen}
+        />
+        <DeleteModal
+          onDelete={onDelete}
+          onClose={toggleDeleteModal}
+          isOpen={isDeleteModalOpen}
+        />
+        <DeleteReportModal
+          onDelete={onDeleteReport}
+          onClose={toggleDeleteReportModal}
+          isOpen={isDeleteReportModalOpen}
+          reports={mockReports}
+          reportName="Executive metrics"
+        />
+      </Content>
+    </Task>
+  );
+};
 
 export default TaskTwo;

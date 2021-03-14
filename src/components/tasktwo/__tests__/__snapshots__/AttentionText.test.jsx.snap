@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttentionText Component Should be rendered correctly 1`] = `
+<div>
+  <div
+    class="AttentionText__Row-sc-1h0csey-0 djJXsm"
+  >
+    <div
+      class="TriangleIcon__Container-kelki1-0 dBbNcD"
+    >
+      <div
+        class="TriangleIcon__Triangle-kelki1-2 iABfzB"
+      />
+      <img
+        alt="Triangle"
+        class="TriangleIcon__IconImage-kelki1-1 fcbLiJ"
+        src="images/triangle.svg"
+      />
+    </div>
+    <span
+      class="AttentionText__Text-sc-1h0csey-1 khFFMU"
+    >
+      Some text
+    </span>
+  </div>
+</div>
+`;

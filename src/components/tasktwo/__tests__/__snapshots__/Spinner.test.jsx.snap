@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner Component Should be rendered correctly 1`] = `
+<div>
+  <div
+    class="Spinner__Circle-sc-192pelu-0 dqRKqq"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;

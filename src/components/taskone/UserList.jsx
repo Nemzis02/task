@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import useDebounce from './useDebounce';
+import fetchUsers from './fetchUsers';
 
 const Row = styled.div`
   display: flex;
@@ -22,7 +23,6 @@ const UserInfo = styled.div`
 `;
 
 const Users = styled.div`
-  max-height: 300px;
   overflow: scroll;
   margin-top: 15px;
 `;
@@ -32,19 +32,12 @@ const UserList = () => {
   const [value, setValue] = useState('');
   const debouncedFilter = useDebounce(value);
 
-  const fetchData = async () => {
-    const URL = 'https://jsonplaceholder.typicode.com/users';
-    const query = debouncedFilter
-      ? `?username=${encodeURIComponent(debouncedFilter)}`
-      : '';
-
-    const res = await fetch(`${URL}${query}`).then((response) => response.json());
-
-    setData(res);
-  };
-
   useEffect(() => {
-    fetchData();
+    (async () => {
+      const res = await fetchUsers(debouncedFilter);
+
+      setData(res);
+    })();
   }, [debouncedFilter]);
 
   const onFilterChange = useCallback((e) => {
@@ -53,10 +46,11 @@ const UserList = () => {
   }, []);
 
   return (
-    <div>
+    <div data-testid="component">
       <div>
         Filter:
         <input
+          data-testid="input"
           type="text"
           onChange={onFilterChange}
           value={value}
@@ -65,7 +59,7 @@ const UserList = () => {
       </div>
       <Users>
         {data.map((user) => (
-          <Row key={user.id} data-testid="test">
+          <Row key={user.id} data-testid="user-item">
             <UserInfo>
               <span>{`Name: ${user.name}`}</span>
               <span>{`Username: ${user.username}`}</span>

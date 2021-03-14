@@ -9,27 +9,14 @@ export const Task = styled.div`
 export const Content = styled.div`
   text-align: justify;
 `;
-export const StyledList = styled.ol`
-  text-align: justify;
-  
-  li {
-    line-height: 2;
-  }
-`;
+
 export const Heading = styled.h1`
   color: #216298;
 `;
-export const DesignList = styled.div`
-  display: flex;
-  flex-direction: column;
 
-  > div {
-    display: flex;
-    flex-direction: column;
-  }
-
-  img {
-    width: 80%;
-    margin: 0 auto;
-  }
+export const BaseModalContainer = styled.div`
+  width: 600px;
+  border: 1px solid #b33a3a;
+  background-color: #fff;
+  border-radius: 10px;
 `;

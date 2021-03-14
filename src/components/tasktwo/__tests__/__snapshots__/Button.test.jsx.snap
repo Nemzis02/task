@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Component Should be rendered correctly 1`] = `
+<div>
+  <button
+    class="Button__StyledButton-ehu7d2-0 knoOUb"
+    type="button"
+  >
+    Hello
+  </button>
+</div>
+`;
